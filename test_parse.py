@@ -1,6 +1,6 @@
 import gfapy
 
-g = gfapy.Gfa.from_file("hprc.gfa")
+g = gfapy.Gfa.from_file("hprc.gfa.gz")
 
 for path in g.paths[:2]:
     print("Path:", path.name)
