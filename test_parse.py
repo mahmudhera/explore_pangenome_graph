@@ -1,15 +1,13 @@
 import gzip
 import gfapy
 
-g = gfapy.Gfa()
+g = gfapy.Gfa(version="gfa1")
 
 with gzip.open("hprc.gfa.gz", "rt") as f:
     for line in f:
-        g.add_line(line.rstrip("\n"))
+        if line.startswith(("S\t", "L\t", "P\t")):
+            g.add_line(line.rstrip("\n"))
 
 print("Segments:", len(g.segments))
-print("Edges:", len(g.edges))
-
-for path in g.paths[:2]:
-    print("Path:", path.name)
-    print("Nodes:", path.segment_names[:20])
+print("Links:", len(g.edges))
+print("Paths:", len(g.paths))
